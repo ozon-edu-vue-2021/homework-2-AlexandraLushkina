@@ -44,6 +44,7 @@ export default {
   width: 40px;
   height: 40px;
   margin-right: 10px;
+  align-self: center;
 }
 .toggle-button {
   margin-left: 10px;

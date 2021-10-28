@@ -1,7 +1,7 @@
 <template>
-  <div class="file-item">
+  <div class="file-item" @click="selectLink" :style="cssProps">
     <img class="icon" src="../assets/file.png"/>
-    <p>
+    <p >
       {{ name }}
     </p>
   </div>
@@ -12,6 +12,23 @@ export default {
   name: 'FileItem',
   props: {
     name: String,
+  },
+  data() {
+    return {
+      selected: false,
+    }
+  },
+  computed: {
+    cssProps() {
+      return {
+        'background-color': this.selected ? '#c8c8c8' : 'transparent',
+      }
+    }
+  },
+  methods: {
+    selectLink() {
+      this.selected = !this.selected;
+    }
   }
 }
 </script>
@@ -20,10 +37,15 @@ export default {
 .file-item {
   display: flex;
   align-content: left;
+  width: max-content;
+  border-radius: 5px;
+  padding-right: 10px;
+  margin-bottom: 5px;
 }
 .icon {
   width: 40px;
   height: 40px;
-  margin-right: 10px;
+  margin-right: 5px;
+  align-self: center;
 }
 </style>
