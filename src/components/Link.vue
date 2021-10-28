@@ -1,5 +1,5 @@
 <template>
-  <div class="Link">
+  <div class="link-item">
     <img class="icon" src="../assets/link.png"/>
     <p>
       {{ name }}
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'Link',
+  name: 'LinkItem',
   props: {
     name: String,
   },
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style scoped>
-.Link {
+.link-item {
   display: flex;
   align-content: left;
 }

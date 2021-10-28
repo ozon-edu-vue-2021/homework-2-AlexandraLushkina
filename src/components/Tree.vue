@@ -1,73 +1,63 @@
 <template>
-    <div class="tree" v-show="propsShow">
-        <div v-for="item in src" :key="item.name" :style="cssProps" v-on:click="toggleShow">
-          <div class="node" v-if="item.type=='directory'">
-            <Directory :name="item.name" />
-            <Tree :key="item.name" :src="item.contents" :nestingLevel="nestingLevel+1" :propsShow="isShow"/>
-          </div>
-          <div class="node" v-else-if="item.type=='file'">
-            <File :name="item.name"/>
-          </div>
-          <div class="node" v-else-if="item.type=='link'">
-            <Link :name="item.name"/>
-          </div>
-        </div>
+  <div class="tree" :style="cssProps">
+    <Directory v-if="node.type=='directory'" :value="showContent" :name="node.name" :hasContent="hasContent" @toggle="toggle"/> 
+    <File v-else-if="node.type=='file'" :name="node.name" />
+    <Link v-else-if="node.type=='link'" :name="node.name" />
+    <div v-if="hasContent" v-show="showContent">
+      <Tree
+        v-for="child in node.contents"
+        :key="child.name"
+        :node="child"
+        :nestingLevel="nestingLevel + 10"
+      />
     </div>
+  </div>
 </template>
 
 <script>
-  import Directory from './Directory.vue';
-  import File from './File.vue';
-  import Link from './Link.vue';
+import Directory from './Directory.vue';
+import File from './File.vue';
+import Link from './Link.vue';
 
   export default {
-    name: 'Tree',
     components: {
       Directory,
       File,
       Link,
     },
+    name: 'Tree',
     props: {
-      src: Array,
-      nestingLevel: Number,
-      propsShow: Boolean,
+      node: Object,
+      nestingLevel: {
+        type: Number,
+        default: 0,
+      }
+    },
+    data() {
+      return {
+        showContent: false,
+      }
     },
     computed: {
       cssProps() {
         return {
-          '--tabs': (this.nestingLevel * 10).toString() + 'px',
+          'margin-left': `${this.nestingLevel}px`,
         }
       },
-    },
-    data: function() {
-      return {
-        isShow: false,
+      hasContent() {
+        const {contents} = this.node;
+        return contents && contents.length > 0;
       }
     },
     methods: {
-      toggleShow() {
-        console.log(this.isShow)
-        this.isShow = !this.isShow;
+      toggle(show) {
+        this.showContent = show;
       }
     }
   }
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 pre {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -75,8 +65,5 @@ pre {
   text-align: left;
   color: #2c3e50;
   margin-top: 60px;
-}
-.node {
-  margin-left: var(--tabs);
 }
 </style>

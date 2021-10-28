@@ -1,23 +1,42 @@
 <template>
-  <div class="Directory">
+  <div class="directory-item">
     <img class="icon" src="../assets/dir.png"/>
     <p>
       {{ name }}
     </p>
+    <img v-if="hasContent" class="toggle-button" :src="toggleIcon" @click="toggle"/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Directory',
+  name: 'DirectoryItem',
+  data() {
+    return {
+      showContent: this.value,
+    }
+  },
   props: {
     name: String,
+    hasContent: Boolean,
+    value: Boolean,
+  },
+  computed: {
+    toggleIcon() {
+      return this.showContent ? require("../assets/minus.svg") : require("../assets/plus.svg");
+    }
+  },
+  methods: {
+    toggle() {
+      this.showContent = !this.showContent;
+      this.$emit('toggle', this.showContent);
+    },
   }
 }
 </script>
 
 <style scoped>
-.Directory {
+.directory-item {
   display: flex;
   align-content: left;
 }
@@ -25,5 +44,9 @@ export default {
   width: 40px;
   height: 40px;
   margin-right: 10px;
+}
+.toggle-button {
+  margin-left: 10px;
+  width: 20px;
 }
 </style>

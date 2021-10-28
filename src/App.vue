@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Tree :src="src" :nestingLevel="1" :propsShow="propsShow"/>
+    <Tree v-for="node in src" :key="node.name" :node="node"/>
   </div>
 </template>
 
@@ -16,7 +16,6 @@ export default {
   data() {
     return {
       src: [NODE_MODULES],
-      propsShow: true,
     }
   }
 }

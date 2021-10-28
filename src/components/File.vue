@@ -1,5 +1,5 @@
 <template>
-  <div class="File">
+  <div class="file-item">
     <img class="icon" src="../assets/file.png"/>
     <p>
       {{ name }}
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'File',
+  name: 'FileItem',
   props: {
     name: String,
   }
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style scoped>
-.File {
+.file-item {
   display: flex;
   align-content: left;
 }
