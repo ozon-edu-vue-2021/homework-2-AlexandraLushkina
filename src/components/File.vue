@@ -1,6 +1,6 @@
 <template>
-  <div class="file-item" @click="selectLink" :style="cssProps">
-    <img class="icon" src="../assets/file.png"/>
+  <div :class="[{ 'selected': selected }, 'file-item']" @click="selectLink">
+    <img class="icon" :src="iconSource"/>
     <p >
       {{ name }}
     </p>
@@ -12,6 +12,7 @@ export default {
   name: 'FileItem',
   props: {
     name: String,
+    type: String,
   },
   data() {
     return {
@@ -19,10 +20,8 @@ export default {
     }
   },
   computed: {
-    cssProps() {
-      return {
-        'background-color': this.selected ? '#c8c8c8' : 'transparent',
-      }
+    iconSource() {
+      return this.type == 'file' ? require('../assets/file.png') : require('../assets/link.png');
     }
   },
   methods: {
@@ -47,5 +46,8 @@ export default {
   height: 40px;
   margin-right: 5px;
   align-self: center;
+}
+.file-item.selected {
+  background-color: #c8c8c8;
 }
 </style>

@@ -1,8 +1,7 @@
 <template>
   <div class="tree" :style="cssProps">
     <Directory v-if="node.type=='directory'" :value="showContent" :name="node.name" :hasContent="hasContent" @toggle="toggle"/> 
-    <File v-else-if="node.type=='file'" :name="node.name" />
-    <Link v-else-if="node.type=='link'" :name="node.name" />
+    <File v-else :name="node.name" :type="node.type" />
     <div v-if="hasContent" v-show="showContent">
       <Tree
         v-for="child in node.contents"
@@ -15,15 +14,13 @@
 </template>
 
 <script>
-import Directory from './Directory.vue';
-import File from './File.vue';
-import Link from './Link.vue';
+import Directory from './Directory';
+import File from './File';
 
   export default {
     components: {
       Directory,
       File,
-      Link,
     },
     name: 'Tree',
     props: {

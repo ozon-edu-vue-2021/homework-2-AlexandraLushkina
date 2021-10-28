@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Tree from './components/Tree.vue';
+import Tree from './components/Tree';
 import NODE_MODULES from '../public/static/testFile.json';
 
 export default {
@@ -25,6 +25,7 @@ export default {
 #app {
   display: block;
   margin-top: 40px;
+  margin-left: 40px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

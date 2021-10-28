@@ -4,7 +4,7 @@
     <p>
       {{ name }}
     </p>
-    <img v-if="hasContent" class="toggle-button" :src="toggleIcon" @click="toggle"/>
+    <img v-if="hasContent" class="toggle-button" :src="toggleIcon" @click="toggle" @keypress="toggle"/>
   </div>
 </template>
 
