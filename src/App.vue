@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Tree :node="src[0]"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Tree from './components/Tree';
+import src from '../public/static/node_modules.json';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Tree
+  },
+  data() {
+    return {
+      src: [src],
+    }
   }
 }
 </script>
 
 <style>
 #app {
+  display: block;
+  margin-top: 40px;
+  margin-left: 40px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
