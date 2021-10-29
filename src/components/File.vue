@@ -40,6 +40,7 @@ export default {
   border-radius: 5px;
   padding-right: 10px;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 .icon {
   width: 40px;

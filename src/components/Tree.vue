@@ -1,8 +1,14 @@
 <template>
   <div class="tree" :style="cssProps">
-    <Directory v-if="node.type=='directory'" :value="showContent" :name="node.name" :hasContent="hasContent" @toggle="toggle"/> 
+    <Directory
+      v-if="node.type=='directory'"
+      :value="showContent"
+      :name="node.name"
+      :hasContent="hasContent"
+      @toggle="toggle"
+    /> 
     <File v-else :name="node.name" :type="node.type" />
-    <div v-if="hasContent" v-show="showContent">
+    <div v-if="showContent">
       <Tree
         v-for="child in node.contents"
         :key="child.name"

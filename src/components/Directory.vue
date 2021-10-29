@@ -1,7 +1,7 @@
 <template>
   <div class="directory-item">
-    <img class="icon" src="../assets/dir.png"/>
-    <p>
+    <img class="icon" src="../assets/dir.png" @click="toggle"/>
+    <p @click="toggle">
       {{ name }}
     </p>
     <img v-if="hasContent" class="toggle-button" :src="toggleIcon" @click="toggle" @keypress="toggle"/>
@@ -39,6 +39,7 @@ export default {
 .directory-item {
   display: flex;
   align-content: left;
+  cursor: pointer;
 }
 .icon {
   width: 40px;

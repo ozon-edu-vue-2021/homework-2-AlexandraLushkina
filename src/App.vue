@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <Tree v-for="node in src" :key="node.name" :node="node"/>
+    <Tree :node="src[0]"/>
   </div>
 </template>
 
 <script>
 import Tree from './components/Tree';
-import NODE_MODULES from '../public/static/testFile.json';
+import src from '../public/static/node_modules.json';
 
 export default {
   name: 'App',
@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      src: [NODE_MODULES],
+      src: [src],
     }
   }
 }
